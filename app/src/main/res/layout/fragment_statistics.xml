@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/statistics_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="ESTADÍSTICAS"
+                android:textSize="40dp"
+                android:textColor="@color/design_default_color_primary"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="15dp"
+                android:text="@string/statistics_title"
+            />
+            <TextView
+                android:id="@+id/statistics_total_decks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/statistics_title"
+                tools:text="Mazos totales: 2"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="15dp"
+                />
+            <TextView
+                android:id="@+id/statistics_total_cards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/statistics_total_decks"
+                tools:text="Cartas totales: 2"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="15dp"
+                />
+            <TextView
+                android:id="@+id/statistics_deck_cards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/statistics_total_cards"
+                tools:text="Cartas de Inglés: 3\nCartas de Francés: 2"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="15dp"
+                />
+            <TextView
+                android:id="@+id/statistics_deck_total_easiness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/statistics_deck_cards"
+                tools:text="Facilidad media: 2.02"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="15dp"
+                />
+            <TextView
+            android:id="@+id/statistics_deck_easiness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/statistics_deck_total_easiness"
+            tools:text="Inglés- Facilidad media: 3\nFrancés- Facilidad media: 3"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="15dp"
+            />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</layout>

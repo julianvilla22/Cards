@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cards</string>
+    <string name="question_text">Tree</string>
+    <string name="easy_button_title">Fácil</string>
+    <string name="doubt_button_title">Dudo</string>
+    <string name="difficult_button_title">Difícil</string>
+    <string name="answer_button_text">Ver respuesta</string>
+    <string name="help_button_text">Ayuda</string>
+    <string name="answer_text">Árbol</string>
+    <string name="no_more_cards">No hay más tarjetas que mostrar</string>
+    <string name="cards_left_format">Quedan %d tarjetas</string>
+    <string name="subtitle_text">Toca para estudiar</string>
+    <string name="study_button">Estudia</string>
+    <string name="cards_list">Lista de tarjetas</string>
+    <string name="card_date_format">Creada: %s</string>
+    <string name="card_next_date_format">Próxima vez: %s</string>
+    <string name="card_list_easiness_format">Facilidad: %.2f</string>
+    <string name="card_list_repetitions_format">Repeticiones: %d</string>
+    <string name="card_list_interval_format">Intervalo: %d</string>
+    <string name="card_edit_id_format">ID: %s</string>
+    <string name="card_edit_question">Pregunta</string>
+    <string name="card_edit_question_field">Escribe aquí la pregunta</string>
+    <string name="card_edit_answer">Respuesta</string>
+    <string name="card_edit_answer_field">Escribe aquí la respuesta</string>
+    <string name="accept_card_edit_button_title">Aceptar</string>
+    <string name="cancel_card_edit_button_title">Cancelar</string>
+    <string name="study_nav_menu_title">Estudiar</string>
+    <string name="statistics_nav_menu_title">Estadísticas</string>
+    <string name="decks_nav_menu_title">Mazos</string>
+    <string name="deck_add_name_field">Introduce el nombre</string>
+    <string name="deck_edit_id_format">Crear un nuevo mazo</string>
+    <string name="card_delete_window_title">Atención</string>
+    <string name="card_delete_window_text">Vas a eliminar esta tarjeta para siempre, ¿Estás seguro?</string>
+    <string name="deck_delete_window_text">Vas a eliminar este mazo y todas sus tarjetas para siempre, ¿Estás seguro?</string>
+    <string name="card_delete_window_confirm">Si, continuar</string>
+    <string name="card_delete_window_cancel">Cancelar</string>
+
+    <string name="statistics_title">Estadísticas</string>
+    <string name="statistics_deck_total">Mazos totales: </string>
+    <string name="statistics_cards_total">Tarjetas totales: </string>
+    <string name="statistics_deck_cards">Tarjetas de </string>
+    <string name="statistics_easiness_average_total">Facilidad media: </string>
+    <string name="statistics_easiness_average_deck">- Facilidad media: </string>
+
+
+
+
+
+    <string name="about_title">Información</string>
+    <string name="about_name">Nombre del desarrollador: Julián Villa</string>
+    <string name="about_age">Edad: 21 años.</string>
+    <string name="about_version">Version: 1.0</string>
+    <string name="about_description">Tarjetas es una app de aprendizaje basada en el algoritmo de
+        repaso espaciado, que consiste en repetir las preguntas en un espacio de tiempo determinado
+        por la dificultad que tu estimes tras cada pregunta. En el apartado mazos puedes crear un
+        nuevo mazo y, en cada mazo, nuevas tarjetas. Tras crear tus tarjetas, en la sección estudiar
+        del menu desplegable, encontrarás las preguntas que debes responder en ese momento.
+        En el apartado mazos también puedes editar tarjetas, así como eliminarlas.
+    </string>
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutFragment">
+    <TextView
+        android:id="@+id/about_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about_title"
+        android:textSize="50dp"
+        android:textColor="@color/design_default_color_primary"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="15dp"
+        />
+
+
+    <TextView
+        android:id="@+id/about_name"
+        android:layout_below="@id/about_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_name"
+        android:textSize="20dp"
+        android:layout_marginHorizontal="15dp"/>
+    <TextView
+        android:id="@+id/about_age"
+        android:layout_below="@id/about_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_age"
+        android:textSize="20dp"
+        android:layout_marginHorizontal="15dp"/>
+    <TextView
+        android:id="@+id/about_version"
+        android:layout_below="@id/about_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_version"
+        android:textSize="20dp"
+        android:layout_marginHorizontal="15dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/about_version"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="0dp"
+        android:text="@string/about_description"
+        android:textSize="20dp" />
+
+</RelativeLayout>

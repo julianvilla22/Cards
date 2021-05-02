@@ -1,0 +1,98 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="card"
+            type="es.uam.eps.dadm.cards.Card" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingTop="10dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/card_edit_id_format(card.id)}"
+            android:textSize="16sp"
+            tools:text="ID DE LA TARJETA"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/id_title"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/card_edit_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/id_title"
+            android:paddingTop="20sp"
+            android:textSize="20sp"
+            android:text="@{card.shortDate}"
+            tools:text="2020-20-02"
+            android:textColor="@color/design_default_color_primary"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/question_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_edit_date"
+            android:hint="@string/card_edit_question_field"
+            android:layout_marginHorizontal="50dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/question_field_text"
+                android:text="@{card.question}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/answer_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/question_field"
+            android:hint="@string/card_edit_answer_field"
+            android:layout_marginHorizontal="50dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/answer_field_text"
+                android:text="@{card.answer}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/answer_field"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="30dp"
+            >
+            <Button
+                android:id="@+id/card_edit_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accept_card_edit_button_title"
+                android:textColor="@color/design_default_color_primary"
+                android:layout_marginRight="10dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            <Button
+                android:id="@+id/card_edit_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel_card_edit_button_title"
+                android:textColor="#E91E63"
+                android:layout_marginLeft="10dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    </RelativeLayout>
+</layout>

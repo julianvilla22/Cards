@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Cards</string>
+    <string name="question_text">Tree</string>
+    <string name="answer_button_text">Check answer</string>
+    <string name="easy_button_title">Easy</string>
+    <string name="doubt_button_title">Doubt</string>
+    <string name="difficult_button_title">Hard</string>
+    <string name="help_button_text">Help</string>
+    <string name="answer_text">Arbol</string>
+    <string name="no_more_cards">There aren\'t more cards to show</string>
+    <string name="cards_left_format">%d cards left</string>
+    <string name="subtitle_text">Touch to study</string>
+    <string name="study_button">Study</string>
+    <string name="cards_list">Cards list</string>
+    <string name="card_date_format">Created: %s</string>
+    <string name="card_next_date_format">Next time: %s</string>
+    <string name="card_list_easiness_format">Easiness: %.2f</string>
+    <string name="card_list_repetitions_format">Repetitions: %d</string>
+    <string name="card_list_interval_format">Interval: %d</string>
+    <string name="card_edit_id_format">ID: %s</string>
+    <string name="card_edit_question">Question</string>
+    <string name="card_edit_question_field">Write the question</string>
+    <string name="card_edit_answer">Answer</string>
+    <string name="card_edit_answer_field">Write the answer</string>
+    <string name="accept_card_edit_button_title">Continue</string>
+    <string name="cancel_card_edit_button_title">Cancel</string>
+    <string name="study_nav_menu_title">Study</string>
+    <string name="statistics_nav_menu_title">Statistics</string>
+    <string name="decks_nav_menu_title">Decks</string>
+    <string name="deck_add_name_field">Write the name</string>
+    <string name="deck_edit_id_format">Add a new deck</string>
+    <string name="card_delete_window_title">Attention</string>
+    <string name="card_delete_window_text">This card will be deleted forever. Are you sure?</string>
+    <string name="deck_delete_window_text">This card and all his cards will be deleted forever. Are you sure?</string>
+    <string name="card_delete_window_confirm">Yes, continue</string>
+    <string name="card_delete_window_cancel">Cancel</string>
+
+    <string name="statistics_title">Statistics</string>
+    <string name="statistics_deck_total">Total decks: </string>
+    <string name="statistics_cards_total">Total cards: </string>
+    <string name="statistics_deck_cards">Cards of </string>
+    <string name="statistics_easiness_average_total">Average easiness: </string>
+    <string name="statistics_easiness_average_deck">- Average easiness: </string>
+
+
+    <string name="about_name">Developer name: Julián Villa</string>
+    <string name="about_age">Age: 21.</string>
+    <string name="about_version">Version: 1.0</string>
+    <string name="about_description">Cards is a learning app based on spaced review algorithm,
+        that consists on repeating questions in a time interval calculated with the difficulty of each
+    question you answer. In the deck paragraph you can create new decks and in each deck, new cards.
+    In the study button of the navigation menu, you can start answering the pending questions. In the
+     deck paragraph, you can also edit and remove cards. </string>
+    <string name="about_title">About</string>
+</resources>
