@@ -10,11 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import es.uam.eps.dadm.cards.database.CardDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentCardEditBinding
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
+import java.util.concurrent.Executors
 
 class CardEditFragment : Fragment() {
+    private val executor = Executors.newSingleThreadExecutor()
+
     lateinit var binding: FragmentCardEditBinding
     lateinit var card: Card
     lateinit var prevQuestion : String
@@ -30,6 +35,11 @@ class CardEditFragment : Fragment() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(CardEditViewModel::class.java)
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,11 +53,19 @@ class CardEditFragment : Fragment() {
         )
 
         val args = CardEditFragmentArgs.fromBundle(requireArguments())
-        deckId = args.deckid
-        card = CardsApplication.getCard(args.cardid, deckId)
+        //deckId = args.deckid
+        deckId = CardsApplication.tempdeck.id
+        viewModel.loadCardId(args.cardid)
+        viewModel.card.observe(viewLifecycleOwner) {
+            card = it
+            binding.card = card
+            prevQuestion = card.question
+            prevAnswer = card.answer
+        }
+        /*card = CardsApplication.getCard(args.cardid, deckId)
         binding.card = card
         prevQuestion = card.question
-        prevAnswer = card.answer
+        prevAnswer = card.answer*/
 
         return binding.root
     }
@@ -76,6 +94,9 @@ class CardEditFragment : Fragment() {
         binding.questionFieldText.addTextChangedListener(questionTextWatcher)
         binding.answerFieldText.addTextChangedListener(answerTextWatcher)
         binding.cardEditAccept.setOnClickListener {
+            executor.execute {
+                this.context?.let { it1 -> CardDatabase.getInstance(context = it1).cardDao.update(card) }
+            }
             activity?.let { it1 -> hideKeyboard(it1) }
             it.findNavController()
                     .navigate(CardEditFragmentDirections

@@ -8,15 +8,25 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
+import es.uam.eps.dadm.cards.database.CardDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
+import java.util.concurrent.Executors
 
 class CardListFragment : Fragment() {
+    private val executor = Executors.newSingleThreadExecutor()
+
     private lateinit var binding: FragmentCardListBinding
     private lateinit var adapter: CardAdapter
     private lateinit var deck : Deck
+
+    private val cardListViewModel by lazy {
+        ViewModelProvider(this).get(CardListViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +45,11 @@ class CardListFragment : Fragment() {
         )
         val args = CardListFragmentArgs.fromBundle(requireArguments())
         adapter = CardAdapter()
-        deck = CardsApplication.getDeck(args.deckid)
-        adapter.data = deck.cards
+        //deck = CardsApplication.getDeck(args.deckid)
+        deck = CardsApplication.tempdeck
+
+        //adapter.data = deck.cards
+        adapter.data = emptyList()
         binding.cardRecyclerView.adapter = adapter
 
         /*binding.studyButton.setOnClickListener {
@@ -47,10 +60,17 @@ class CardListFragment : Fragment() {
         }*/
         binding.newCardFab.setOnClickListener {
             val card = Card("", "")
-            CardsApplication.addCard(card, deck)
+            //CardsApplication.addCard(card, deck)
+            executor.execute {CardDatabase.getInstance(context = it.context).cardDao.addCard(card)}
             it.findNavController().navigate(CardListFragmentDirections
                 .actionCardListFragmentToCardEditFragment(card.id,args.deckid))
         }
+        cardListViewModel.cards.observe(
+                viewLifecycleOwner,
+                Observer {
+                    adapter.data = it
+                    adapter.notifyDataSetChanged()
+                })
 
         return binding.root
     }
