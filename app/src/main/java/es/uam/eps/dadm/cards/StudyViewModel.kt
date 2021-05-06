@@ -1,30 +1,39 @@
 package es.uam.eps.dadm.cards
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
 import es.uam.eps.dadm.cards.CardsApplication.Companion.decks
+import es.uam.eps.dadm.cards.database.CardDatabase
 import timber.log.Timber
 import java.time.LocalDateTime
+import java.util.concurrent.Executors
 
-class StudyViewModel : ViewModel() {
+class StudyViewModel(application: Application) : AndroidViewModel(application) {
+    private val executor = Executors.newSingleThreadExecutor()
+
+    private val context = getApplication<Application>().applicationContext
     var card: Card? = null
-    private var _cardsLeft = MutableLiveData<Int>()
-    val cardsLeft: LiveData<Int>
-        get() = _cardsLeft
+    var cards: LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards()
+    var dueCard: LiveData<Card?> =
+            Transformations.map(cards, ::due)
+    var cardsLeft: LiveData<Int> =
+            Transformations.map(cards, ::left)
 
-    init {
-        card = random_card()
-        _cardsLeft.value = CardsApplication.numberOfCardsLeft()
+    private fun due(cards: List<Card>) = try {
+        cards.filter { card -> card.isDue(LocalDateTime.now()) }.random()
+    } catch (e: Exception) {
+        null
     }
+
+    private fun left(cards: List<Card>) =
+            cards.filter { card -> card.isDue(LocalDateTime.now()) }.size
 
     fun update(quality: Int) {
-        Timber.i("SE HA PULSADO BOTON DE CALIDAD: ${quality}")
         card?.quality = quality
         card?.update(LocalDateTime.now())
-        card = random_card()
-        _cardsLeft.value = cardsLeft.value?.minus(1)
-    }
 
-    private fun random_card() = CardsApplication.randomCard()
+        executor.execute {
+            CardDatabase.getInstance(context).cardDao.update(card!!)
+        }
+    }
 }
