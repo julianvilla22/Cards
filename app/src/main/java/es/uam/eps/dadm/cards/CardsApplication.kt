@@ -10,31 +10,36 @@ class CardsApplication: Application() {
     private val executor = Executors.newSingleThreadExecutor()
 
     init {
-        tempdeck = Deck("deck")
+        /*tempdeck = Deck("deck")
         decks.add(tempdeck)
         cards.add(Card("To wake up", "Despertarse"))
         cards.add(Card("To give in", "Dar el brazo a torcer"))
         cards.add(Card("To pick up", "Recoger"))
         cards.forEach{
             addCard(it, tempdeck)
-        }
+        }*/
 
     }
 
     override fun onCreate() {
         super.onCreate()
         val cardDatabase = CardDatabase.getInstance(context = this)
-        /*executor.execute {
-            cardDatabase.cardDao.addCard(
-                    Card(question = "To push in", answer = "Colarse")
+        executor.execute {
+           /* cardDatabase.cardDao.addCard(
+                    Card(question = "To push in", answer = "Colarse", deckId = 0)
             )
             cardDatabase.cardDao.addCard(
-                    Card(question = "Despertarse", answer = "To wake up")
+                    Card(question = "Despertarse", answer = "To wake up", deckId = 0)
             )
-        }*/
+            cardDatabase.cardDao.addCard(
+                Card(question = "Bonjour", answer = "Buenos días", deckId = 1)
+            )
+            cardDatabase.cardDao.addDeck(Deck(0, "Inglés"))
+            cardDatabase.cardDao.addDeck(Deck(1, "Francés"))*/
+        }
         Timber.plant(Timber.DebugTree())
     }
-
+/*
     companion object {
         var cards: MutableList<Card> = mutableListOf<Card>()
         var decks: MutableList<Deck> = mutableListOf<Deck>()
@@ -129,5 +134,5 @@ class CardsApplication: Application() {
             easiness /= total
             return String.format("%.2f", easiness)
         }
-    }
+    }*/
 }

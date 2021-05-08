@@ -37,7 +37,7 @@
             app:destination="@id/cardEditFragment" />
         <argument
             android:name="deckid"
-            app:argType="string" />
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/cardEditFragment"
@@ -54,7 +54,7 @@
             app:argType="string" />
         <argument
             android:name="deckid"
-            app:argType="string" />
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

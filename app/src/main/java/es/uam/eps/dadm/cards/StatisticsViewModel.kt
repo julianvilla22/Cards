@@ -11,10 +11,11 @@ class StatisticsViewModel(application: Application) : AndroidViewModel(applicati
     private val executor = Executors.newSingleThreadExecutor()
     private val context = getApplication<Application>().applicationContext
     val cards: LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards()
+    val decks: LiveData<List<Deck>> = CardDatabase.getInstance(context).cardDao.getDecks()
     private var avgeas = 0.0
 
     fun totalDecks(): Int{
-        return CardsApplication.decks.size
+        return decks.value!!.size
     }
     fun totalCards(): Int {
         /*var size = 0
@@ -24,7 +25,7 @@ class StatisticsViewModel(application: Application) : AndroidViewModel(applicati
         return cards.value?.size ?: 0
     }
     fun deckCards(deck: Deck): Int{
-        return deck.cards.size
+        return CardDatabase.getInstance(context = context).cardDao.getDeckCards(deck.id).value?.size ?: 0
     }
     fun totalAverageEasiness(lifecycleOwner: LifecycleOwner): String{
 
@@ -44,9 +45,10 @@ class StatisticsViewModel(application: Application) : AndroidViewModel(applicati
         return String.format("%.2f", avgeas)
     }
     fun deckAverageEasiness(deck: Deck): String{
-        var total = deck.cards.size
+        var total = CardDatabase.getInstance(context).cardDao.getCards().value?.size ?: 0
         var easiness = 0.0
-        deck.cards.forEach{card ->
+        var list = CardDatabase.getInstance(context = context).cardDao.getDeckCards(deck.id).value
+        list?.forEach{card ->
             easiness += card.easiness
         }
         easiness /= total

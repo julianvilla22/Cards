@@ -2,7 +2,7 @@ package es.uam.eps.dadm.cards
 
 import android.app.Application
 import androidx.lifecycle.*
-import es.uam.eps.dadm.cards.CardsApplication.Companion.decks
+//import es.uam.eps.dadm.cards.CardsApplication.Companion.decks
 import es.uam.eps.dadm.cards.database.CardDatabase
 import timber.log.Timber
 import java.time.LocalDateTime

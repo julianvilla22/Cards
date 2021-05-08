@@ -24,7 +24,7 @@ class CardEditFragment : Fragment() {
     lateinit var card: Card
     lateinit var prevQuestion : String
     lateinit var prevAnswer : String
-    lateinit var deckId : String
+    var deckId : Long = 0
 
     private fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -54,7 +54,7 @@ class CardEditFragment : Fragment() {
 
         val args = CardEditFragmentArgs.fromBundle(requireArguments())
         //deckId = args.deckid
-        deckId = CardsApplication.tempdeck.id
+        deckId = args.deckid
         viewModel.loadCardId(args.cardid)
         viewModel.card.observe(viewLifecycleOwner) {
             card = it

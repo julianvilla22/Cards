@@ -20,8 +20,8 @@ open class Card(
     var interval: Long = 1L,
     var nextPracticeDate: String = date,
     var easiness: Double = 2.5,
-    var answered: Boolean = false
-
+    var answered: Boolean = false,
+    var deckId: Long
 ) {
     var quality = -1
     var shortDate : String = ""
@@ -41,6 +41,7 @@ open class Card(
                 repetitions = data[6].trim().toInt(),
                 interval = data[7].trim().toLong(),
                 nextPracticeDate = data[8].trim(),
+                deckId = data[9].trim().toLong(),
             )
 
         }
@@ -119,7 +120,7 @@ open class Card(
     }
 
     override fun toString(): String {
-        return "card | $question | $answer | $date | $id | $easiness | $repetitions | $interval | $nextPracticeDate\n"
+        return "card | $question | $answer | $date | $id | $easiness | $repetitions | $interval | $nextPracticeDate | $deckId\n"
     }
     fun isDue(date:LocalDateTime): Boolean {
         val next = LocalDateTime.parse(nextPracticeDate)

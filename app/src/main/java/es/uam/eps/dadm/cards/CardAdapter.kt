@@ -1,10 +1,7 @@
 package es.uam.eps.dadm.cards
 
 import android.app.AlertDialog
-import android.app.Application
 import android.content.DialogInterface
-import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -15,11 +12,13 @@ import android.widget.RelativeLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import es.uam.eps.dadm.cards.database.CardDatabase
 import es.uam.eps.dadm.cards.databinding.ListItemCardBinding
-import timber.log.Timber
+import java.util.concurrent.Executors
 
 class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
     lateinit var binding: ListItemCardBinding
+    private val executor = Executors.newSingleThreadExecutor()
 
     var data = listOf<Card>()
         set(value) {
@@ -36,11 +35,13 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
             this.card=card
         }
         init {
+
+
             view.setOnClickListener {
                 val id = card.id
                 it.findNavController()
                     .navigate(CardListFragmentDirections
-                        .actionCardListFragmentToCardEditFragment(id, CardsApplication.getDeckbyCard(card).id))
+                        .actionCardListFragmentToCardEditFragment(id, card.deckId))
             }
             binding.infoCardButton.setOnClickListener {
                 if(extraInfo){
@@ -58,7 +59,9 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
                 dialogo.setTitle(R.string.card_delete_window_title)
                 dialogo.setMessage(R.string.card_delete_window_text)
                 dialogo.setPositiveButton(R.string.card_delete_window_confirm){ _: DialogInterface, _: Int ->
-                    CardsApplication.delCard(card)
+                    executor.execute {
+                        CardDatabase.getInstance(view.context).cardDao.delCard(card)
+                    }
                     notifyItemRemoved(bindingAdapterPosition)
                 }
                 dialogo.setNegativeButton(R.string.card_delete_window_cancel){ _: DialogInterface, _: Int ->}

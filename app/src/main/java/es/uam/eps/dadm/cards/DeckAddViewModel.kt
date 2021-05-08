@@ -6,17 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import es.uam.eps.dadm.cards.database.CardDatabase
+import java.time.LocalDateTime
 
-class CardListViewModel(application: Application)
-    : AndroidViewModel(application) {
-
+class DeckAddViewModel(application: Application): AndroidViewModel(application)  {
     private val context = getApplication<Application>().applicationContext
-    private val deckId = MutableLiveData<Long>()
 
-    val cards: LiveData<List<Card>> = Transformations.switchMap(deckId){
-        CardDatabase.getInstance(context).cardDao.getDeckCards(it)
-    }
-    fun loadDeckId(id: Long){
-        deckId.value = id
-    }
+    var higherId: LiveData<Long> = CardDatabase.getInstance(context).cardDao.getHighestId()
 }

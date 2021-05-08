@@ -22,8 +22,6 @@ class CardListFragment : Fragment() {
 
     private lateinit var binding: FragmentCardListBinding
     private lateinit var adapter: CardAdapter
-    private lateinit var deck : Deck
-
     private val cardListViewModel by lazy {
         ViewModelProvider(this).get(CardListViewModel::class.java)
     }
@@ -46,7 +44,8 @@ class CardListFragment : Fragment() {
         val args = CardListFragmentArgs.fromBundle(requireArguments())
         adapter = CardAdapter()
         //deck = CardsApplication.getDeck(args.deckid)
-        deck = CardsApplication.tempdeck
+        //deck = CardsApplication.tempdeck
+
 
         //adapter.data = deck.cards
         adapter.data = emptyList()
@@ -59,12 +58,13 @@ class CardListFragment : Fragment() {
                 Toast.makeText(activity, R.string.no_more_cards, Toast.LENGTH_SHORT).show()
         }*/
         binding.newCardFab.setOnClickListener {
-            val card = Card("", "")
+            val card = Card("", "", deckId = args.deckid)
             //CardsApplication.addCard(card, deck)
             executor.execute {CardDatabase.getInstance(context = it.context).cardDao.addCard(card)}
             it.findNavController().navigate(CardListFragmentDirections
                 .actionCardListFragmentToCardEditFragment(card.id,args.deckid))
         }
+        cardListViewModel.loadDeckId(args.deckid)
         cardListViewModel.cards.observe(
                 viewLifecycleOwner,
                 Observer {

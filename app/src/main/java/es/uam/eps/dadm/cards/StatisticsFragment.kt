@@ -18,14 +18,15 @@ class StatisticsFragment : Fragment() {
     }
     private fun getEachDeckCards():String{
         var cad = ""
-        CardsApplication.decks.forEach{
+        viewModel.decks.value!!.forEach{
             cad += "${resources.getText(R.string.statistics_deck_cards)} ${it.name}: ${viewModel.deckCards(it)}\n"
         }
+
         return cad
     }
     private fun getEachDeckEasiness():String{
         var cad = ""
-        CardsApplication.decks.forEach{
+        viewModel.decks.value!!.forEach{
             cad += "${it.name}${resources.getText(R.string.statistics_easiness_average_deck)} ${viewModel.deckAverageEasiness(it)}\n"
         }
         return cad
