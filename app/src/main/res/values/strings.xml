@@ -52,4 +52,5 @@
     In the study button of the navigation menu, you can start answering the pending questions. In the
      deck paragraph, you can also edit and remove cards. </string>
     <string name="about_title">About</string>
+    <string name="settings">Settings</string>
 </resources>
