@@ -60,4 +60,12 @@
         del menu desplegable, encontrarás las preguntas que debes responder en ese momento.
         En el apartado mazos también puedes editar tarjetas, así como eliminarlas.
     </string>
+    <string name="decks_header">Mazos</string>
+    <string name="max_number_cards">Máximo número de tarjetas</string>
+
+    <!-- Board Preferences -->
+    <string name="board_title">Mostrar pizarra</string>
+    <string name="board_summary_on">Pizarra disponible</string>
+    <string name="board_summary_off">Pizarra no disponible</string>
+    <string name="title_activity_settings">Ajustes</string>
 </resources>

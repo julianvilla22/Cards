@@ -4,6 +4,7 @@ import android.view.View
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 import kotlin.math.roundToLong
@@ -14,6 +15,7 @@ open class Card(
     var question: String,
     var answer: String,
     var date: String = LocalDateTime.now().toString(),
+    var lastDate: String = LocalDateTime.now().minusDays(1).toString(),
     @PrimaryKey
     var id: String = UUID.randomUUID().toString(),
     var repetitions: Int = 0,
@@ -42,6 +44,7 @@ open class Card(
                 interval = data[7].trim().toLong(),
                 nextPracticeDate = data[8].trim(),
                 deckId = data[9].trim().toLong(),
+                lastDate = data[10].trim(),
             )
 
         }
@@ -80,6 +83,7 @@ open class Card(
             2 -> 6L
             else -> (interval * easiness).roundToLong()
         }
+        lastDate = currentDate.toString()
         nextPracticeDate = currentDate.plusDays(interval).toString()
     }
 
@@ -120,12 +124,20 @@ open class Card(
     }
 
     override fun toString(): String {
-        return "card | $question | $answer | $date | $id | $easiness | $repetitions | $interval | $nextPracticeDate | $deckId\n"
+        return "card | $question | $answer | $date | $id | $easiness | $repetitions | $interval | $nextPracticeDate | $deckId | $lastDate\n"
     }
     fun isDue(date:LocalDateTime): Boolean {
         val next = LocalDateTime.parse(nextPracticeDate)
         val result = date.compareTo(next)
         return result >= 0
+    }
+
+    fun studiedToday(): Boolean{
+        val last = LocalDateTime.parse(lastDate).toLocalDate()
+        val now = LocalDate.now()
+        if (last.compareTo(now) == 0)
+            return true
+        return false
     }
 
     fun update_easy() {

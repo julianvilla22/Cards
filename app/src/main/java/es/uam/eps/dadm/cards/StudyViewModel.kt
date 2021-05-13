@@ -18,6 +18,9 @@ class StudyViewModel(application: Application) : AndroidViewModel(application) {
             Transformations.map(cards, ::due)
     var cardsLeft: LiveData<Int> =
             Transformations.map(cards, ::left)
+    var cardsStudied: LiveData<Int> =
+        Transformations.map(cards, ::today)
+    //var boardVisible: String? = "true"//SettingsActivity.getBoardVisible(context)
 
     private fun due(cards: List<Card>) = try {
         cards.filter { card -> card.isDue(LocalDateTime.now()) }.random()
@@ -27,6 +30,9 @@ class StudyViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun left(cards: List<Card>) =
             cards.filter { card -> card.isDue(LocalDateTime.now()) }.size
+
+    private fun today(cards: List<Card>) =
+        cards.filter { card -> card.studiedToday() }.size
 
     fun update(quality: Int) {
         card?.quality = quality

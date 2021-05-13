@@ -1,6 +1,7 @@
 package es.uam.eps.dadm.cards
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -9,10 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.preference.Preference
+import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
 import es.uam.eps.dadm.cards.database.CardDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
+import timber.log.Timber
 import java.util.concurrent.Executors
 
 class CardListFragment : Fragment() {
@@ -71,6 +75,9 @@ class CardListFragment : Fragment() {
                     adapter.notifyDataSetChanged()
                 })
 
+        //context?.let { SettingsActivity.setMaximumNumberOfCards(it,"27") }
+        Timber.i(context?.let { SettingsActivity.getMaximumNumberOfCards(it) })
+
         return binding.root
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -81,7 +88,7 @@ class CardListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.settings -> {
-                // Aquí irá el código para arrancar las preferencias de Cards
+                startActivity(Intent(activity, SettingsActivity::class.java))
             }
         }
         return true

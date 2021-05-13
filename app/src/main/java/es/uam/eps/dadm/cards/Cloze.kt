@@ -12,9 +12,10 @@ class Cloze(
     interval: Long = 1L,
     nextPracticeDate: String = date,
     easiness: Double = 2.5,
-    deckId: Long
+    deckId: Long,
+    lastDate: String
 ) :
-    Card(question, answer, date, id, repetitions, interval, nextPracticeDate, easiness, deckId=deckId) {
+    Card(question=question, answer=answer, date=date, id=id, repetitions=repetitions, interval=interval, nextPracticeDate=nextPracticeDate, easiness=easiness, deckId=deckId, lastDate = lastDate) {
     companion object {
         fun fromString(str: String) : Cloze {
             val data = str.split("|")
@@ -28,6 +29,7 @@ class Cloze(
                 interval = data[7].trim().toLong(),
                 nextPracticeDate = data[8].trim(),
                 deckId = data[9].trim().toLong(),
+                lastDate = data[10].trim(),
             )
         }
     }
@@ -48,7 +50,7 @@ class Cloze(
     }
 
     override fun toString(): String {
-        return "cloze | $question | $answer | $date | $id | $easiness | $repetitions | $interval | $nextPracticeDate | $deckId\n"
+        return "cloze | $question | $answer | $date | $id | $easiness | $repetitions | $interval | $nextPracticeDate | $deckId | $lastDate\n"
     }
 
 }

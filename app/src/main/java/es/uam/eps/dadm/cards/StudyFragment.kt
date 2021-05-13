@@ -43,7 +43,6 @@ class StudyFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate<FragmentStudyBinding>(inflater, R.layout.fragment_study, container, false)
-        binding.studyViewModel = viewModel
         binding.answerButton.setOnClickListener {
             viewModel.card?.answered = true
             binding.invalidateAll()
@@ -53,10 +52,12 @@ class StudyFragment: Fragment() {
         binding.easyButton.setOnClickListener(listener)
 
         viewModel.dueCard.observe(viewLifecycleOwner,
-        Observer {
-            viewModel.card = it
-            binding.invalidateAll()
-        })
+            {
+                viewModel.card = it
+                binding.invalidateAll()
+            })
+        binding.studyViewModel = viewModel
+        Timber.i("CARTAS RESTANTES: " + viewModel.cardsLeft.value.toString())
         return binding.root
     }
 }

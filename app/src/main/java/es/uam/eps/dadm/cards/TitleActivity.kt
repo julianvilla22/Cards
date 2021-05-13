@@ -4,9 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.preference.PreferenceManager
+import com.google.firebase.FirebaseError
+import com.google.firebase.database.*
 import es.uam.eps.dadm.cards.databinding.ActivityTitleBinding
 import timber.log.Timber
 
@@ -16,9 +20,32 @@ class TitleActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_title)
+
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://julianvillacards-default-rtdb.europe-west1.firebasedatabase.app/")
+        val reference = database.getReference("mensaje")
+        reference.setValue("Hola desde Cards")
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Timber.i("DATA error")
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                Toast.makeText(
+                    baseContext,
+                    p0.value.toString(),
+                    Toast.LENGTH_LONG
+                ).show()
+                Timber.i("DB CHANGED:"+p0.value.toString())
+            }
+        })
         NavigationUI.setupWithNavController(
             binding.navView,
             findNavController(R.id.navHostFragment))
+        PreferenceManager.setDefaultValues(
+            this,
+            R.xml.root_preferences,
+            false
+        )
     }
     override fun onStart() {
         super.onStart()

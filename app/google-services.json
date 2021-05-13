@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1069919904484",
+    "firebase_url": "https://julianvillacards-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "julianvillacards",
+    "storage_bucket": "julianvillacards.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069919904484:android:5503b62d747201379fc2f1",
+        "android_client_info": {
+          "package_name": "es.uam.eps.dadm.cards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069919904484-c0n90r63anu9hljg5cj00guigv62leou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.uam.eps.dadm.cards",
+            "certificate_hash": "1ed6cd74cc66cd17d7e252e92fd006df5fd897f9"
+          }
+        },
+        {
+          "client_id": "1069919904484-ij9o4h4b7apc4g00uo88v5prmh8rajdg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB9jHaI1TxpiHcTuN_NCAabPD6DtxJHkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069919904484-ij9o4h4b7apc4g00uo88v5prmh8rajdg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
