@@ -43,6 +43,7 @@ class StudyFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate<FragmentStudyBinding>(inflater, R.layout.fragment_study, container, false)
+        binding.lifecycleOwner = this
         binding.answerButton.setOnClickListener {
             viewModel.card?.answered = true
             binding.invalidateAll()

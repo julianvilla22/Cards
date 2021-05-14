@@ -12,7 +12,7 @@ class CardListFirebaseViewModel(): ViewModel() {
     private var _cards = MutableLiveData<List<Card>>()
     val cards: LiveData<List<Card>>
         get() = _cards
-    private var reference = FirebaseDatabase.getInstance("https://julianvillacards-default-rtdb.europe-west1.firebasedatabase.app/").getReference("tarjetas")
+    private var reference = FirebaseDatabase.getInstance().getReference("tarjetas")
     private val deckId = MutableLiveData<Long>()
 
     init {

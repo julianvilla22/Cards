@@ -26,7 +26,7 @@ class CardEditFragment : Fragment() {
     lateinit var prevQuestion : String
     lateinit var prevAnswer : String
     var deckId : Long = 0
-    private var reference = FirebaseDatabase.getInstance("https://julianvillacards-default-rtdb.europe-west1.firebasedatabase.app/").getReference("tarjetas")
+    private var reference = FirebaseDatabase.getInstance().getReference("tarjetas")
 
     private fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

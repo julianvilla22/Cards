@@ -21,9 +21,9 @@ class TitleActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_title)
 
-        val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://julianvillacards-default-rtdb.europe-west1.firebasedatabase.app/")
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
         val reference = database.getReference("mensaje")
-        reference.setValue("Hola desde Cards")
+        reference.setValue("Hola desde Cards 3")
         reference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Timber.i("DATA error")

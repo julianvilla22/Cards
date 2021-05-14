@@ -20,7 +20,6 @@ import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 import timber.log.Timber
 import java.util.concurrent.Executors
 private const val DATABASENAME = "tarjetas"
-private const val DATABASEURL = "https://julianvillacards-default-rtdb.europe-west1.firebasedatabase.app/"
 
 class CardListFragment : Fragment() {
     private val executor = Executors.newSingleThreadExecutor()
@@ -32,7 +31,7 @@ class CardListFragment : Fragment() {
         //ViewModelProvider(this).get(CardListFirebaseViewModel::class.java)
     }
 
-    private var reference = FirebaseDatabase.getInstance(DATABASEURL).getReference(DATABASENAME)
+    private var reference = FirebaseDatabase.getInstance().getReference(DATABASENAME)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
