@@ -100,6 +100,7 @@ class EmailPasswordActivity : Activity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
                     val user = auth.currentUser
+                    FirebaseSync.clearLocalDB(this)
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -120,6 +121,7 @@ class EmailPasswordActivity : Activity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
+                    FirebaseSync.downloadUserData(this)
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.

@@ -43,4 +43,12 @@ class TitleFragment: Fragment() {
 
         return binding.root
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (Firebase.auth.currentUser == null){
+            val intent: Intent = Intent(context, EmailPasswordActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }

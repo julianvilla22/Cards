@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
+import kotlin.collections.HashMap
 import kotlin.math.roundToLong
 
 @Entity(tableName = "cards_table")
@@ -39,6 +40,8 @@ open class Card(
         LocalDateTime.now().toString(),
         UUID.randomUUID().toString()
     )
+
+
 
     /*companion object {
         fun fromString(str: String) : Card {

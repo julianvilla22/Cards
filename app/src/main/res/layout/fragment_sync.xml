@@ -1,0 +1,70 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingTop="10dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sync_title"
+            android:textSize="16sp"
+            tools:text="SINCRONIZAR DATOS CON FIREBASE"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/sync_title"
+            android:textStyle="bold"
+            />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/sync_warning_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/sync_buttons"
+                android:paddingTop="20sp"
+                android:textSize="15sp"
+                android:text="@string/sync_warning"
+                tools:text="Descargar/subir datos sobreescribirá los datos existentes. Si va a hacer logout, recuerde subir antes los datos antes."
+                android:textColor="#C9F44336"
+                android:textAlignment="center"
+                />
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="30dp"
+                android:id="@+id/sync_buttons"
+                >
+                <Button
+                    android:id="@+id/upload_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sync_upload"
+                    android:textColor="@color/design_default_color_primary"
+                    android:layout_marginRight="10dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                <Button
+                    android:id="@+id/download_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sync_download"
+                    android:layout_marginLeft="10dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textColor="@color/design_default_color_primary"/>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+</layout>

@@ -15,6 +15,11 @@
         android:icon="@drawable/statistics"
         android:title="@string/statistics_nav_menu_title"/>
     <item
+        android:id="@+id/syncFragment"
+        android:enabled="true"
+        android:icon="@drawable/sync_logo"
+        android:title="@string/sync_nav_title"/>
+    <item
         android:id="@+id/aboutFragment"
         android:enabled="true"
         android:icon="@drawable/info_card"

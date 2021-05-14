@@ -9,9 +9,9 @@ import java.util.*
 
 @Entity(tableName = "decks_table")
 data class Deck(
-
     @PrimaryKey
-
     var id: Long,
     @ColumnInfo(name = "deck_name")
-    var name: String)
+    var name: String){
+    constructor() : this(27,"nombre")
+}

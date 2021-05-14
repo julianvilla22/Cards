@@ -69,6 +69,13 @@
     <string name="decks_header">Mazos</string>
     <string name="max_number_cards">Máximo número de tarjetas</string>
 
+    <string name="sync_title">Sincronizar datos con Firebase:</string>
+    <string name="sync_upload">Subir datos</string>
+    <string name="sync_download">Descargar datos</string>
+    <string name="sync_warning">Descargar/subir datos sobreescribirá los datos existentes. Si va a hacer logout, recuerde subir antes los datos antes.</string>
+    <string name="sync_nav_title">Sincronizar</string>
+
+
     <!-- Board Preferences -->
     <string name="board_title">Mostrar pizarra</string>
     <string name="board_summary_on">Pizarra disponible</string>

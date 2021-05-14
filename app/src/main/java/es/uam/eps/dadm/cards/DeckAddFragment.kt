@@ -50,10 +50,6 @@ class DeckAddFragment : Fragment() {
     }
 
 
-
-    private val deckListViewModel by lazy {
-        ViewModelProvider(this).get(DeckListViewModel::class.java)
-    }
     private fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         var view = activity.currentFocus
@@ -80,10 +76,6 @@ class DeckAddFragment : Fragment() {
             val vm by lazy {
                 ViewModelProvider(this).get(DeckAddViewModel::class.java)
             }
-            //val i = deckListViewModel.decks.value!!.size - 1
-            /*viewModel.higherId.observe(viewLifecycleOwner){id->
-                deck = Deck(name = name, id =id)
-            }*/
 
             deck = Deck(name = name, id =deckId)
 

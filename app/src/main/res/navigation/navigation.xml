@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_titleFragment_to_statisticsFragment2"
             app:destination="@id/statisticsFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_syncFragment"
+            app:destination="@id/syncFragment" />
     </fragment>
     <fragment
         android:id="@+id/studyFragment"
@@ -89,4 +92,9 @@
         android:name="es.uam.eps.dadm.cards.StatisticsFragment"
         android:label="fragment_statistics"
         tools:layout="@layout/fragment_statistics" />
+    <fragment
+        android:id="@+id/syncFragment"
+        android:name="es.uam.eps.dadm.cards.SyncFragment"
+        android:label="SyncFragment"
+        tools:layout="@layout/fragment_sync" />
 </navigation>

@@ -61,6 +61,12 @@
     <string name="password_title_required">Both fields are required</string>
     <string name="title_activity_settings">Settings</string>
 
+    <string name="sync_title">Sync data with Firebase:</string>
+    <string name="sync_upload">Upload data</string>
+    <string name="sync_download">Download data</string>
+    <string name="sync_warning">Downloading/uploading will overwrite the existing data. If you are logging out, remember to upload data before.</string>
+    <string name="sync_nav_title">Sync data</string>
+
 
 
     <string name="decks_header">Decks</string>

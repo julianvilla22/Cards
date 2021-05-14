@@ -38,6 +38,12 @@ interface CardDao {
     @Delete
     fun delDeck(deck: Deck)
 
+    @Query("DELETE FROM decks_table")
+    fun delDecks()
+
+    @Query("DELETE FROM cards_table")
+    fun delCards()
+
     @Query("DELETE FROM cards_table WHERE deckId = :deckId")
     fun delDeckCards(deckId: Long)
 
