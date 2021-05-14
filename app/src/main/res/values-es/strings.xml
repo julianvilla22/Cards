@@ -74,6 +74,9 @@
     <string name="sync_download">Descargar datos</string>
     <string name="sync_warning">Descargar/subir datos sobreescribirá los datos existentes. Si va a hacer logout, recuerde subir antes los datos antes.</string>
     <string name="sync_nav_title">Sincronizar</string>
+    <string name="chart_title">Numero de cartas previstas para estudiar</string>
+
+    <string name="edit_card">Editar tarjeta</string>
 
 
     <!-- Board Preferences -->

@@ -11,6 +11,9 @@ interface CardDao {
     @Query("SELECT * FROM cards_table")
     fun getCards(): LiveData<List<Card>>
 
+    @Query("SELECT * FROM cards_table")
+    fun getCardsList(): List<Card>
+
     @Query("SELECT * FROM cards_table WHERE id = :id")
     fun getCard(id: String): LiveData<Card?>
 
