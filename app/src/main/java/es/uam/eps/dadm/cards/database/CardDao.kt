@@ -56,11 +56,10 @@ interface CardDao {
     fun getDeckWithCards(deckId: Long): LiveData<DeckWithCards>
 
     @Query("SELECT id + 1 FROM decks_table ORDER BY id DESC LIMIT 1")
-    fun getHighestId():LiveData<Long>
+    fun getHighestId(): LiveData<Long>
 
     @Query("SELECT id + 1 FROM decks_table ORDER BY id DESC LIMIT 1")
-    fun getHighestIdL():LiveData<Long?>
-
+    fun getHighestIdL(): LiveData<Long?>
 
 
 }

@@ -13,7 +13,7 @@ import es.uam.eps.dadm.cards.databinding.FragmentStudyBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 import timber.log.Timber
 
-class StudyFragment: Fragment() {
+class StudyFragment : Fragment() {
     lateinit var binding: FragmentStudyBinding
     private val viewModel: StudyViewModel by lazy {
         ViewModelProvider(this).get(StudyViewModel::class.java)
@@ -34,15 +34,24 @@ class StudyFragment: Fragment() {
         // Si la propiedad card de viewModel es null
         // informa al usuario mediante un Toast de que
         // no quedan tarjetas
-        if(viewModel.card == null){
+        if (viewModel.card == null) {
             binding.relativeLayout.visibility = View.INVISIBLE
             Toast.makeText(activity, getString(R.string.no_more_cards), Toast.LENGTH_LONG).show()
         }
         binding.invalidateAll()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate<FragmentStudyBinding>(inflater, R.layout.fragment_study, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate<FragmentStudyBinding>(
+            inflater,
+            R.layout.fragment_study,
+            container,
+            false
+        )
         binding.lifecycleOwner = this
         binding.answerButton.setOnClickListener {
             viewModel.card?.answered = true

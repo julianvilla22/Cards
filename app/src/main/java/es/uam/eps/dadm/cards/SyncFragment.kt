@@ -12,7 +12,7 @@ import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 import es.uam.eps.dadm.cards.databinding.FragmentSyncBinding
 import timber.log.Timber
 
-class SyncFragment : Fragment()  {
+class SyncFragment : Fragment() {
     private lateinit var binding: FragmentSyncBinding
     override fun onCreateView(
         inflater: LayoutInflater,

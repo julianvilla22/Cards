@@ -32,26 +32,27 @@ class DeckAddFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_deck_add,
-                container,
-                false
+            inflater,
+            R.layout.fragment_deck_add,
+            container,
+            false
         )
-        viewModel.higherId.observe(viewLifecycleOwner){id->
-                deckId = id ?: 0
-            }
+        viewModel.higherId.observe(viewLifecycleOwner) { id ->
+            deckId = id ?: 0
+        }
 
         return binding.root
     }
 
 
     private fun hideKeyboard(activity: Activity) {
-        val imm: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm: InputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         var view = activity.currentFocus
         if (view == null) {
             view = View(activity)
@@ -73,23 +74,20 @@ class DeckAddFragment : Fragment() {
         }
         binding.nameFieldText.addTextChangedListener(nameTextWatcher)
         binding.cardEditAccept.setOnClickListener {
-            val vm by lazy {
-                ViewModelProvider(this).get(DeckAddViewModel::class.java)
-            }
 
-            deck = Deck(name = name, id =deckId)
+            deck = Deck(name = name, id = deckId)
 
             executor.execute {
                 CardDatabase.getInstance(it.context).cardDao.addDeck(deck)
             }
             activity?.let { it1 -> hideKeyboard(it1) }
             it.findNavController()
-                    .navigate(DeckAddFragmentDirections.actionDeckAddFragmentToDeckListFragment())
+                .navigate(DeckAddFragmentDirections.actionDeckAddFragmentToDeckListFragment())
         }
         binding.cardEditCancel.setOnClickListener {
             activity?.let { it1 -> hideKeyboard(it1) }
             it.findNavController()
-                    .navigate(DeckAddFragmentDirections.actionDeckAddFragmentToDeckListFragment())
+                .navigate(DeckAddFragmentDirections.actionDeckAddFragmentToDeckListFragment())
         }
 
     }

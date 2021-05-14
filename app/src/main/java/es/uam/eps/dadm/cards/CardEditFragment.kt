@@ -23,13 +23,14 @@ class CardEditFragment : Fragment() {
 
     lateinit var binding: FragmentCardEditBinding
     lateinit var card: Card
-    lateinit var prevQuestion : String
-    lateinit var prevAnswer : String
-    var deckId : Long = 0
+    lateinit var prevQuestion: String
+    lateinit var prevAnswer: String
+    var deckId: Long = 0
     private var reference = FirebaseDatabase.getInstance().getReference("tarjetas")
 
     private fun hideKeyboard(activity: Activity) {
-        val imm: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm: InputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         var view = activity.currentFocus
         if (view == null) {
             view = View(activity)
@@ -64,10 +65,6 @@ class CardEditFragment : Fragment() {
             prevQuestion = card.question
             prevAnswer = card.answer
         }
-        /*card = CardsApplication.getCard(args.cardid, deckId)
-        binding.card = card
-        prevQuestion = card.question
-        prevAnswer = card.answer*/
 
         return binding.root
     }
@@ -97,21 +94,28 @@ class CardEditFragment : Fragment() {
         binding.answerFieldText.addTextChangedListener(answerTextWatcher)
         binding.cardEditAccept.setOnClickListener {
             executor.execute {
-                this.context?.let { it1 -> CardDatabase.getInstance(context = it1).cardDao.update(card) }
+                this.context?.let { it1 ->
+                    CardDatabase.getInstance(context = it1).cardDao.update(
+                        card
+                    )
+                }
             }
-            //reference.child(card.id).setValue(card)
             activity?.let { it1 -> hideKeyboard(it1) }
             it.findNavController()
-                    .navigate(CardEditFragmentDirections
-                            .actionCardEditFragmentToCardListFragment(deckId))
+                .navigate(
+                    CardEditFragmentDirections
+                        .actionCardEditFragmentToCardListFragment(deckId)
+                )
         }
         binding.cardEditCancel.setOnClickListener {
             card.answer = prevAnswer
             card.question = prevQuestion
             activity?.let { it1 -> hideKeyboard(it1) }
             it.findNavController()
-                    .navigate(CardEditFragmentDirections
-                            .actionCardEditFragmentToCardListFragment(deckId))
+                .navigate(
+                    CardEditFragmentDirections
+                        .actionCardEditFragmentToCardListFragment(deckId)
+                )
         }
 
     }

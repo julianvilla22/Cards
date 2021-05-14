@@ -16,26 +16,26 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 
-class TitleFragment: Fragment() {
+class TitleFragment : Fragment() {
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         (activity as AppCompatActivity).supportActionBar?.hide()
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(
-                inflater,
-                R.layout.fragment_title,
-                container,
-                false)
+            inflater,
+            R.layout.fragment_title,
+            container,
+            false
+        )
 
         binding.cardsTitleTextView.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_titleFragment_to_deckListFragment)
             (activity as AppCompatActivity).supportActionBar?.show()
         }
         binding.logout.setOnClickListener {
-            var auth: FirebaseAuth
-            auth = Firebase.auth
+            var auth: FirebaseAuth = Firebase.auth
             auth.signOut()
             val intent: Intent = Intent(it.context, EmailPasswordActivity::class.java)
             startActivity(intent)
@@ -46,7 +46,7 @@ class TitleFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (Firebase.auth.currentUser == null){
+        if (Firebase.auth.currentUser == null) {
             val intent: Intent = Intent(context, EmailPasswordActivity::class.java)
             startActivity(intent)
         }

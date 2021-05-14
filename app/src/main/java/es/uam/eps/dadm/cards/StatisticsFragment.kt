@@ -12,40 +12,55 @@ import es.uam.eps.dadm.cards.databinding.FragmentStatisticsBinding
 
 
 class StatisticsFragment : Fragment() {
-    lateinit var binding : FragmentStatisticsBinding
+    lateinit var binding: FragmentStatisticsBinding
     private val viewModel: StatisticsViewModel by lazy {
         ViewModelProvider(this).get(StatisticsViewModel::class.java)
     }
-    private fun getEachDeckCards():String{
+    /*
+    private fun getEachDeckCards(): String {
         var cad = ""
-        viewModel.decks.value!!.forEach{
-            cad += "${resources.getText(R.string.statistics_deck_cards)} ${it.name}: ${viewModel.deckCards(it)}\n"
+        viewModel.decks.value!!.forEach {
+            cad += "${resources.getText(R.string.statistics_deck_cards)} ${it.name}: ${
+                viewModel.deckCards(
+                    it
+                )
+            }\n"
         }
 
         return cad
     }
-    private fun getEachDeckEasiness():String{
+
+    private fun getEachDeckEasiness(): String {
         var cad = ""
-        viewModel.decks.value!!.forEach{
-            cad += "${it.name}${resources.getText(R.string.statistics_easiness_average_deck)} ${viewModel.deckAverageEasiness(it)}\n"
+        viewModel.decks.value!!.forEach {
+            cad += "${it.name}${resources.getText(R.string.statistics_easiness_average_deck)} ${
+                viewModel.deckAverageEasiness(
+                    it
+                )
+            }\n"
         }
         return cad
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_statistics, container, false)
-        binding.statisticsTotalDecks.text = "${resources.getText(R.string.statistics_deck_total)}${viewModel.totalDecks()}"
-        binding.statisticsTotalCards.text = "${resources.getText(R.string.statistics_cards_total)}${viewModel.totalCards()}"
+        binding.statisticsTotalDecks.text =
+            "${resources.getText(R.string.statistics_deck_total)}${viewModel.totalDecks()}"
+        binding.statisticsTotalCards.text =
+            "${resources.getText(R.string.statistics_cards_total)}${viewModel.totalCards()}"
         binding.statisticsDeckCards.text = getEachDeckCards()
-        binding.statisticsDeckTotalEasiness.text = "${resources.getText(R.string.statistics_easiness_average_total)}${viewModel.totalAverageEasiness(viewLifecycleOwner)}"
+        binding.statisticsDeckTotalEasiness.text =
+            "${resources.getText(R.string.statistics_easiness_average_total)}${
+                viewModel.totalAverageEasiness(viewLifecycleOwner)
+            }"
         binding.statisticsDeckEasiness.text = getEachDeckEasiness()
 
 
         return binding.root
-    }
-
-
+    }*/
 
 
 }

@@ -26,6 +26,7 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
         }
     }
+
     companion object {
         const val MAXIMUM_KEY = "max_number_cards"
         const val MAXIMUM_DEFAULT = "20"
@@ -37,18 +38,20 @@ class SettingsActivity : AppCompatActivity() {
                 .getDefaultSharedPreferences(context)
                 .getString(MAXIMUM_KEY, MAXIMUM_DEFAULT)
         }
+
         fun getBoardVisible(context: Context): String? {
             return PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .getString(BOARD_VISIBLE, BOARD_DEFAULT)
         }
+
         fun setMaximumNumberOfCards(context: Context, max: String) {
             val sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context)
             val editor = sharedPreferences.edit()
             editor.putString(SettingsActivity.MAXIMUM_KEY, max)
-            editor.commit ()
-            //editor.apply()
+            editor.commit()
+
         }
     }
 }

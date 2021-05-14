@@ -19,9 +19,10 @@ import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cards.databinding.ActivityEmailPasswordBinding
 
 class EmailPasswordActivity : Activity() {
-    lateinit var binding : ActivityEmailPasswordBinding
-    private  var email: String  = ""
-    private  var password: String  = ""
+    lateinit var binding: ActivityEmailPasswordBinding
+    private var email: String = ""
+    private var password: String = ""
+
     // [START declare_auth]
     private lateinit var auth: FirebaseAuth
     // [END declare_auth]
@@ -31,23 +32,25 @@ class EmailPasswordActivity : Activity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_email_password)
 
-        binding.acceder.setOnClickListener{
-            if(password.trim() != "" && email.trim() != "") {
+        binding.acceder.setOnClickListener {
+            if (password.trim() != "" && email.trim() != "") {
                 signIn(email, password)
-            }
-            else {
-                Toast.makeText(baseContext, R.string.password_title_required,
-                    Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    baseContext, R.string.password_title_required,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
         binding.registrarse.setOnClickListener {
-            if(password != "" && email != "") {
+            if (password != "" && email != "") {
                 createAccount(email, password)
-            }
-            else {
-                Toast.makeText(baseContext, R.string.password_title_required,
-                    Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    baseContext, R.string.password_title_required,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -62,14 +65,14 @@ class EmailPasswordActivity : Activity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        if(currentUser != null){
+        if (currentUser != null) {
             reload();
         }
 
         val emailFieldListener = object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) { }
+            override fun afterTextChanged(s: Editable?) {}
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             /* Se ejecuta cuando la pregunta cambia */
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -77,9 +80,9 @@ class EmailPasswordActivity : Activity() {
             }
         }
         val passwordFieldListener = object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) { }
+            override fun afterTextChanged(s: Editable?) {}
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             /* Se ejecuta cuando la pregunta cambia */
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -105,8 +108,10 @@ class EmailPasswordActivity : Activity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     updateUI(null)
                 }
             }
@@ -126,8 +131,10 @@ class EmailPasswordActivity : Activity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     updateUI(null)
                 }
             }
@@ -145,7 +152,7 @@ class EmailPasswordActivity : Activity() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        if(user != null) {
+        if (user != null) {
             val intent: Intent = Intent(this, TitleActivity::class.java)
             startActivity(intent)
         }

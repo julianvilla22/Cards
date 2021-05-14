@@ -30,22 +30,23 @@ class DeckListFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_deck_list,
-                container,
-                false
+            inflater,
+            R.layout.fragment_deck_list,
+            container,
+            false
         )
         adapter = DeckAdapter()
         adapter.data = emptyList()
         binding.deckRecyclerView.adapter = adapter
 
         binding.newDeckFab.setOnClickListener {
-            it.findNavController().navigate(DeckListFragmentDirections.actionDeckListFragmentToDeckAddFragment())
+            it.findNavController()
+                .navigate(DeckListFragmentDirections.actionDeckListFragmentToDeckAddFragment())
         }
         deckListViewModel.decks.observe(
             viewLifecycleOwner,

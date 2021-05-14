@@ -25,27 +25,30 @@ class DeckAdapter() : RecyclerView.Adapter<DeckAdapter.DeckHolder>() {
         lateinit var deck: Deck
         fun bind(dc: DeckWithCards) {
             binding.deck = dc.deck
-            this.deck=dc.deck
+            this.deck = dc.deck
         }
+
         init {
             view.setOnClickListener {
                 val id = deck.id
                 it.findNavController()
-                    .navigate(DeckListFragmentDirections
-                        .actionDeckListFragmentToCardListFragment(id))
+                    .navigate(
+                        DeckListFragmentDirections
+                            .actionDeckListFragmentToCardListFragment(id)
+                    )
             }
-            binding.deleteDeckButton.setOnClickListener{
+            binding.deleteDeckButton.setOnClickListener {
                 var dialogo = AlertDialog.Builder(view.context)
                 dialogo.setTitle(R.string.card_delete_window_title)
                 dialogo.setMessage(R.string.deck_delete_window_text)
-                dialogo.setPositiveButton(R.string.card_delete_window_confirm){ _: DialogInterface, _: Int ->
+                dialogo.setPositiveButton(R.string.card_delete_window_confirm) { _: DialogInterface, _: Int ->
                     notifyItemRemoved(bindingAdapterPosition)
                     executor.execute {
                         CardDatabase.getInstance(view.context).cardDao.delDeck(deck)
                         CardDatabase.getInstance(view.context).cardDao.delDeckCards(deck.id)
                     }
                 }
-                dialogo.setNegativeButton(R.string.card_delete_window_cancel){ _: DialogInterface, _: Int ->}
+                dialogo.setNegativeButton(R.string.card_delete_window_cancel) { _: DialogInterface, _: Int -> }
                 dialogo.show()
 
             }

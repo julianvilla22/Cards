@@ -15,9 +15,9 @@ class StudyViewModel(application: Application) : AndroidViewModel(application) {
     var card: Card? = null
     var cards: LiveData<List<Card>> = CardDatabase.getInstance(context).cardDao.getCards()
     var dueCard: LiveData<Card?> =
-            Transformations.map(cards, ::due)
+        Transformations.map(cards, ::due)
     var cardsLeft: LiveData<Int> =
-            Transformations.map(cards, ::left)
+        Transformations.map(cards, ::left)
     var cardsStudied: LiveData<Int> =
         Transformations.map(cards, ::today)
     //var boardVisible: String? = "true"//SettingsActivity.getBoardVisible(context)
@@ -29,7 +29,7 @@ class StudyViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun left(cards: List<Card>) =
-            cards.filter { card -> card.isDue(LocalDateTime.now()) }.size
+        cards.filter { card -> card.isDue(LocalDateTime.now()) }.size
 
     private fun today(cards: List<Card>) =
         cards.filter { card -> card.studiedToday() }.size

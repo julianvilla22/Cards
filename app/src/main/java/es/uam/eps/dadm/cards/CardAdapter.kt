@@ -32,39 +32,53 @@ class CardAdapter() : RecyclerView.Adapter<CardAdapter.CardHolder>() {
         lateinit var card: Card
         fun bind(card: Card) {
             binding.card = card
-            this.card=card
+            this.card = card
         }
+
         init {
 
 
             view.setOnClickListener {
                 val id = card.id
                 it.findNavController()
-                    .navigate(CardListFragmentDirections
-                        .actionCardListFragmentToCardEditFragment(id, card.deckId))
+                    .navigate(
+                        CardListFragmentDirections
+                            .actionCardListFragmentToCardEditFragment(id, card.deckId)
+                    )
             }
             binding.infoCardButton.setOnClickListener {
-                if(extraInfo){
+                if (extraInfo) {
                     view.findViewById<RelativeLayout>(R.id.optional_info_layout).visibility = GONE
-                    view.findViewById<ImageButton>(R.id.info_card_button).background = ResourcesCompat.getDrawable(view.context.resources, R.drawable.info_card, null)
+                    view.findViewById<ImageButton>(R.id.info_card_button).background =
+                        ResourcesCompat.getDrawable(
+                            view.context.resources,
+                            R.drawable.info_card,
+                            null
+                        )
                     extraInfo = false
-                }else{
-                    view.findViewById<RelativeLayout>(R.id.optional_info_layout).visibility = VISIBLE
-                    view.findViewById<ImageButton>(R.id.info_card_button).background = ResourcesCompat.getDrawable(view.context.resources, R.drawable.info_card_selected, null)
+                } else {
+                    view.findViewById<RelativeLayout>(R.id.optional_info_layout).visibility =
+                        VISIBLE
+                    view.findViewById<ImageButton>(R.id.info_card_button).background =
+                        ResourcesCompat.getDrawable(
+                            view.context.resources,
+                            R.drawable.info_card_selected,
+                            null
+                        )
                     extraInfo = true
                 }
             }
-            binding.deleteCardButton.setOnClickListener{
+            binding.deleteCardButton.setOnClickListener {
                 var dialogo = AlertDialog.Builder(view.context)
                 dialogo.setTitle(R.string.card_delete_window_title)
                 dialogo.setMessage(R.string.card_delete_window_text)
-                dialogo.setPositiveButton(R.string.card_delete_window_confirm){ _: DialogInterface, _: Int ->
+                dialogo.setPositiveButton(R.string.card_delete_window_confirm) { _: DialogInterface, _: Int ->
                     executor.execute {
                         CardDatabase.getInstance(view.context).cardDao.delCard(card)
                     }
                     notifyItemRemoved(bindingAdapterPosition)
                 }
-                dialogo.setNegativeButton(R.string.card_delete_window_cancel){ _: DialogInterface, _: Int ->}
+                dialogo.setNegativeButton(R.string.card_delete_window_cancel) { _: DialogInterface, _: Int -> }
                 dialogo.show()
 
             }

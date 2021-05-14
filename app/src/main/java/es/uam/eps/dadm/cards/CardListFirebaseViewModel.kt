@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class CardListFirebaseViewModel(): ViewModel() {
+class CardListFirebaseViewModel() : ViewModel() {
     private var _cards = MutableLiveData<List<Card>>()
     val cards: LiveData<List<Card>>
         get() = _cards
@@ -16,7 +16,7 @@ class CardListFirebaseViewModel(): ViewModel() {
     private val deckId = MutableLiveData<Long>()
 
     init {
-        reference.addValueEventListener(object: ValueEventListener {
+        reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var listOfCards: MutableList<Card> = mutableListOf<Card>()
                 for (card in snapshot.children) {
@@ -31,8 +31,5 @@ class CardListFirebaseViewModel(): ViewModel() {
                 TODO("Not yet implemented")
             }
         })
-    }
-    fun loadDeckId(id: Long){
-        deckId.value = id
     }
 }

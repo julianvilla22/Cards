@@ -14,7 +14,7 @@ import com.google.firebase.database.*
 import es.uam.eps.dadm.cards.databinding.ActivityTitleBinding
 import timber.log.Timber
 
-class TitleActivity : AppCompatActivity(){
+class TitleActivity : AppCompatActivity() {
     lateinit var binding: ActivityTitleBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,18 +35,20 @@ class TitleActivity : AppCompatActivity(){
                     p0.value.toString(),
                     Toast.LENGTH_LONG
                 ).show()
-                Timber.i("DB CHANGED:"+p0.value.toString())
+                Timber.i("DB CHANGED:" + p0.value.toString())
             }
         })
         NavigationUI.setupWithNavController(
             binding.navView,
-            findNavController(R.id.navHostFragment))
+            findNavController(R.id.navHostFragment)
+        )
         PreferenceManager.setDefaultValues(
             this,
             R.xml.root_preferences,
             false
         )
     }
+
     override fun onStart() {
         super.onStart()
         Timber.i("onStart called")
@@ -74,6 +76,7 @@ class TitleActivity : AppCompatActivity(){
         super.onDestroy()
         Timber.i("onDestroy called")
     }
+
     override fun onRestart() {
         super.onRestart()
         Timber.i("onRestart called")

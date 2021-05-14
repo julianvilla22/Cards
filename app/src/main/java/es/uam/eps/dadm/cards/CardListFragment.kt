@@ -19,6 +19,7 @@ import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 import timber.log.Timber
 import java.util.concurrent.Executors
+
 private const val DATABASENAME = "tarjetas"
 
 class CardListFragment : Fragment() {
@@ -39,53 +40,46 @@ class CardListFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_card_list,
-                container,
-                false
+            inflater,
+            R.layout.fragment_card_list,
+            container,
+            false
         )
         val args = CardListFragmentArgs.fromBundle(requireArguments())
         adapter = CardAdapter()
-        //deck = CardsApplication.getDeck(args.deckid)
-        //deck = CardsApplication.tempdeck
 
 
-        //adapter.data = deck.cards
+
         adapter.data = emptyList()
         binding.cardRecyclerView.adapter = adapter
 
-        /*binding.studyButton.setOnClickListener {
-            if (CardsApplication.numberOfCardsLeft() > 0)
-                it.findNavController().navigate(R.id.action_cardListFragment_to_studyFragment)
-            else
-                Toast.makeText(activity, R.string.no_more_cards, Toast.LENGTH_SHORT).show()
-        }*/
         binding.newCardFab.setOnClickListener {
             val card = Card("", "", deckId = args.deckid)
             //CardsApplication.addCard(card, deck)
-            executor.execute {CardDatabase.getInstance(context = it.context).cardDao.addCard(card)}
+            executor.execute { CardDatabase.getInstance(context = it.context).cardDao.addCard(card) }
             //reference.child(card.id).setValue(card)
-            it.findNavController().navigate(CardListFragmentDirections
-                .actionCardListFragmentToCardEditFragment(card.id,args.deckid))
+            it.findNavController().navigate(
+                CardListFragmentDirections
+                    .actionCardListFragmentToCardEditFragment(card.id, args.deckid)
+            )
         }
         cardListViewModel.loadDeckId(args.deckid)
         cardListViewModel.cards.observe(
-                viewLifecycleOwner,
-                Observer {
-                    adapter.data = it
-                    adapter.notifyDataSetChanged()
-                })
-
-        //context?.let { SettingsActivity.setMaximumNumberOfCards(it,"27") }
+            viewLifecycleOwner,
+            {
+                adapter.data = it
+                adapter.notifyDataSetChanged()
+            })
         Timber.i(context?.let { SettingsActivity.getMaximumNumberOfCards(it) })
 
         return binding.root
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_card_list, menu)

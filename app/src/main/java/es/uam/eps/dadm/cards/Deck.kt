@@ -12,6 +12,7 @@ data class Deck(
     @PrimaryKey
     var id: Long,
     @ColumnInfo(name = "deck_name")
-    var name: String){
-    constructor() : this(27,"nombre")
+    var name: String
+) {
+    constructor() : this(27, "nombre")
 }
