@@ -28,6 +28,17 @@
             tools:text="Toca para estudiar"
             android:textStyle="bold">
         </TextView>
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
 
     </RelativeLayout>
 </layout>
