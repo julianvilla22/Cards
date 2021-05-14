@@ -14,24 +14,33 @@ open class Card(
     @ColumnInfo(name = "cards_table")
     var question: String,
     var answer: String,
-    var date: String = LocalDateTime.now().toString(),
-    var lastDate: String = LocalDateTime.now().minusDays(1).toString(),
+    var deckId: Long,
     @PrimaryKey
     var id: String = UUID.randomUUID().toString(),
-    var repetitions: Int = 0,
-    var interval: Long = 1L,
-    var nextPracticeDate: String = date,
-    var easiness: Double = 2.5,
-    var answered: Boolean = false,
-    var deckId: Long
+    var date: String = LocalDateTime.now().toString()
+
 ) {
+    var lastDate: String = LocalDateTime.now().minusDays(1).toString()
+    var repetitions: Int = 0
+    var interval: Long = 1L
+    var nextPracticeDate: String = date
+    var easiness: Double = 2.5
+    var answered: Boolean = false
     var quality = -1
     var shortDate : String = ""
         get() = date.substring(0,10)
     var shortNextDate : String = ""
         get() = nextPracticeDate.substring(0,10)
 
-    companion object {
+    constructor() : this(
+        "Pregunta",
+        "Respuesta",
+        100,
+        LocalDateTime.now().toString(),
+        UUID.randomUUID().toString()
+    )
+
+    /*companion object {
         fun fromString(str: String) : Card {
             val data = str.split("|")
             return Card(
@@ -48,7 +57,7 @@ open class Card(
             )
 
         }
-    }
+    }*/
 
     open fun show() {
         var dif = -1

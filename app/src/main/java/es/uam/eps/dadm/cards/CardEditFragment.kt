@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.google.firebase.database.FirebaseDatabase
 import es.uam.eps.dadm.cards.database.CardDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentCardEditBinding
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
@@ -25,6 +26,7 @@ class CardEditFragment : Fragment() {
     lateinit var prevQuestion : String
     lateinit var prevAnswer : String
     var deckId : Long = 0
+    private var reference = FirebaseDatabase.getInstance("https://julianvillacards-default-rtdb.europe-west1.firebasedatabase.app/").getReference("tarjetas")
 
     private fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -97,6 +99,7 @@ class CardEditFragment : Fragment() {
             executor.execute {
                 this.context?.let { it1 -> CardDatabase.getInstance(context = it1).cardDao.update(card) }
             }
+            //reference.child(card.id).setValue(card)
             activity?.let { it1 -> hideKeyboard(it1) }
             it.findNavController()
                     .navigate(CardEditFragmentDirections

@@ -13,11 +13,14 @@ import androidx.navigation.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 import es.uam.eps.dadm.cards.database.CardDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 import timber.log.Timber
 import java.util.concurrent.Executors
+private const val DATABASENAME = "tarjetas"
+private const val DATABASEURL = "https://julianvillacards-default-rtdb.europe-west1.firebasedatabase.app/"
 
 class CardListFragment : Fragment() {
     private val executor = Executors.newSingleThreadExecutor()
@@ -26,7 +29,10 @@ class CardListFragment : Fragment() {
     private lateinit var adapter: CardAdapter
     private val cardListViewModel by lazy {
         ViewModelProvider(this).get(CardListViewModel::class.java)
+        //ViewModelProvider(this).get(CardListFirebaseViewModel::class.java)
     }
+
+    private var reference = FirebaseDatabase.getInstance(DATABASEURL).getReference(DATABASENAME)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +70,7 @@ class CardListFragment : Fragment() {
             val card = Card("", "", deckId = args.deckid)
             //CardsApplication.addCard(card, deck)
             executor.execute {CardDatabase.getInstance(context = it.context).cardDao.addCard(card)}
+            //reference.child(card.id).setValue(card)
             it.findNavController().navigate(CardListFragmentDirections
                 .actionCardListFragmentToCardEditFragment(card.id,args.deckid))
         }

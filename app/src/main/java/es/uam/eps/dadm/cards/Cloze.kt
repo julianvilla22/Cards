@@ -1,5 +1,5 @@
 package es.uam.eps.dadm.cards
-
+/*
 import java.time.LocalDateTime
 import java.util.*
 
@@ -53,4 +53,4 @@ class Cloze(
         return "cloze | $question | $answer | $date | $id | $easiness | $repetitions | $interval | $nextPracticeDate | $deckId | $lastDate\n"
     }
 
-}
+}*/
